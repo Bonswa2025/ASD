@@ -25,10 +25,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
  */
 
 // ——— Types
-export type ChecklistItem = { id: string; text: string; required?: boolean };
-export type MenuItem = { id: string; naam: string; prijs?: string; beschrijving?: string; allergenen?: string[]; fotoUrl?: string };
-export type PakItem = { id: string; naam: string; aantal?: number; eenheid?: string; opmerking?: string; verplicht?: boolean; categorie?: string };
-export type Manual = {
   id: string;
   naam: string;
   beschrijving?: string;
