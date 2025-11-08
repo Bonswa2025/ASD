@@ -4,9 +4,9 @@ import StadslabSuiteHub from './app.jsx'
 import './index.css'
 
 // Modules (wired via props)
-import Foodtruck from './modules/foodtruck.jsx'
-import Backoffice from './modules/backoffice.jsx'
-import Personeel from './modules/personeel/index.jsx'
+import Foodtruck from './modules/foodtruck'
+import Backoffice from './modules/backoffice'
+import Personeel from './modules/personeel/index'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
