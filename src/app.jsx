@@ -95,38 +95,7 @@ function TopStripNav(){
   );
 }
 
-function Sidebar({ onNavigate }){
-  const Item = ({ icon:Icon, label, href }) => (
-    <button onClick={()=>{ location.hash = href; onNavigate?.(); }} className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-slate-100 text-left">
-      <Icon className="h-4 w-4"/>
-      <span>{label}</span>
-    </button>
-  );
-  return (
-    <div className="h-full w-64 border-r bg-white flex flex-col">
-      <div className="px-4 py-3 border-b flex items-center gap-2">
-        <LayoutGrid className="h-4 w-4 text-primary"/>
-        <span className="font-medium">Hoofdmenu</span>
-      </div>
-      <div className="py-2">
-        <Item icon={Home} label="Dashboard" href="#/" />
-        <Item icon={Truck} label="Foodtruck Manuals" href="#/app/foodtruck" />
-        <Item icon={Wrench} label="Stadslab Backoffice" href="#/app/backoffice" />
-        <div className="mt-2">
-          <div className="px-4 py-2 text-[11px] uppercase tracking-wide text-slate-500">Personeelsbeheer</div>
-          <Item icon={Users} label="Rooster" href="#/app/personeel/rooster" />
-          <Item icon={Users} label="Medewerkers" href="#/app/personeel/medewerkers" />
-          <Item icon={Users} label="Uren" href="#/app/personeel/uren" />
-        </div>
-        <Item icon={FileText} label="Documentatie" href="#/docs" />
-        <Item icon={Settings} label="Instellingen" href="#/settings" />
-      </div>
-      <div className="mt-auto p-3 text-[11px] text-slate-500">
-        UI v1.0 • Deze hub is stateless; modules bewaren hun eigen data (localStorage/back-end).
-      </div>
-    </div>
-  );
-}
+
 
 class ErrorBoundary extends React.Component {
   constructor(props){
