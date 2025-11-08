@@ -7,6 +7,7 @@ import './index.css'
 import Foodtruck from './modules/foodtruck.jsx'
 import Backoffice from './modules/backoffice.jsx'
 import Personeel from './modules/personeel/index.jsx'
+import RoosterModule from './modules/personeel/rooster_module.jsx'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
