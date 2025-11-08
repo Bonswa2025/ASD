@@ -4,7 +4,7 @@ import StadslabSuiteHub from './app.jsx'
 import './index.css'
 
 // Modules (wired via props)
-import Foodtruck from './modules/foodtruck.jsx'
+import Foodtruck from './modules/foodtruck'
 import Backoffice from './modules/backoffice.jsx'
 import Personeel from './modules/personeel/index.jsx'
 import RoosterModule from './modules/personeel/rooster_module.jsx'
