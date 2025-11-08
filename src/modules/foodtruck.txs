@@ -1,3 +1,53 @@
+// ---------- Types ----------
+export type ChecklistItem = {
+  id: string;
+  text: string;
+  required?: boolean;
+};
+
+export type MenuItem = {
+  id: string;
+  naam: string;
+  prijs?: string;
+  beschrijving?: string;
+  allergenen?: string[];
+  fotoUrl?: string;
+};
+
+export type Equipment = {
+  id: string;
+  naam: string;
+  specs?: string;
+  opmerking?: string;
+};
+
+export type PakItem = {
+  id: string;
+  naam: string;
+  aantal?: number;
+  eenheid?: string;
+  opmerking?: string;
+  verplicht?: boolean;
+  categorie?: string;
+};
+
+export type Manual = {
+  id: string;
+  naam: string;
+  beschrijving?: string;
+  actief: boolean;
+  fotoTruckUrl?: string;
+  infra: { stroom: string; water?: string; gas?: string };
+  menu: MenuItem[];
+  apparatuur: Equipment[];
+  logistiek?: string;
+  opbouw: ChecklistItem[];
+  afbouw: ChecklistItem[];
+  bijzonderheden?: string;
+  paklijst?: PakItem[];
+};
+
+
 import React, { useEffect, useMemo, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
