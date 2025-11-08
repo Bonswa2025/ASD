@@ -11,20 +11,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Printer, RotateCcw, Flag, QrCode, Plus, Trash2, Save, Download } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 
-/**
- * FRONTOFFICE + ADMIN • Foodtruck Manuals (Pizza demo)
- * ----------------------------------------------------
- * - Frontoffice: read-only weergave + checklists met lokale voortgang per dag
- * - Admin: inline bewerken (truck, menu, infra, apparatuur, checklists, logistiek, bijzonderheden)
- * - CRUD voor trucks, menu, apparatuur, checklists én paklijst
- * - Hash-router zodat dit als statische website kan draaien
- * - Opslaan = placeholder (console.log payload)
- *
- * ✅ Paklijst afvinken per dag (localStorage)
- * ✅ Paklijst categorieën + CSV-export
- */
-
-// ——— Types
   id: string;
   naam: string;
   beschrijving?: string;
