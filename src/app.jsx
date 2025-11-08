@@ -32,14 +32,7 @@ function Topbar(){
     <div className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden"><Menu className="h-5 w-5"/></Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="p-0">
-              <Sidebar onNavigate={()=>{}}/>
-            </SheetContent>
-          </Sheet>
+         {/* Sidebar removed */}
           <LayoutGrid className="h-5 w-5 text-primary"/>
           <span className="font-semibold">Stadslab Suite</span>
         </div>
