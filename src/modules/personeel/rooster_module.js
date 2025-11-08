@@ -1,42 +1,51 @@
-// rooster_module.js
-import React, { useMemo } from "react";
-import { useEmployees } from "./context/EmployeesContext";
-import EmployeeCard from "./components/EmployeeCard";
+// ─────────────────────────────────────────────
+// Rooster Module (TS removed, pure React + JSX)
+// ─────────────────────────────────────────────
 
-function byDate(a, b) {
-  const d = (a.date || "").localeCompare(b.date || "");
-  return d !== 0 ? d : (a.start || "").localeCompare(b.start || "");
-}
+import React, { useState } from "react";
 
-export default function RoosterModule({ onEditEmployee, onDeleteEmployee }) {
-  const { employees, shifts } = useEmployees();
+function RoosterModule() {
+  const [employees, setEmployees] = useState([
+    // voorbeelddata — pas aan naar wens
+    { id: "1", naam: "Jan", functie: "Kok" },
+    { id: "2", naam: "Sanne", functie: "Bediening" },
+  ]);
 
-  // Koppel shifts per medewerker
-  const shiftsByEmployee = useMemo(() => {
-    const map = new Map(employees.map(e => [e.id, []]));
-    (shifts || []).forEach(s => {
-      if (!map.has(s.employeeId)) map.set(s.employeeId, []);
-      map.get(s.employeeId).push(s);
-    });
-    for (const list of map.values()) list.sort(byDate);
-    return map;
-  }, [employees, shifts]);
-
-  if (!employees?.length) {
-    return <div className="text-sm text-gray-600">Nog geen medewerkers toegevoegd.</div>;
-  }
+  const addEmployee = () => {
+    setEmployees([
+      ...employees,
+      {
+        id: Date.now().toString(),
+        naam: "Nieuwe medewerker",
+        functie: "Functie onbekend",
+      },
+    ]);
+  };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {employees.map(emp => (
-        <EmployeeCard
-          key={emp.id}
-          employee={emp}
-          shifts={shiftsByEmployee.get(emp.id) || []}
-          onEdit={onEditEmployee ? () => onEditEmployee(emp) : undefined}
-          onDelete={onDeleteEmployee ? () => onDeleteEmployee(emp.id) : undefined}
-        />
-      ))}
+    <div style={{ padding: "2rem" }}>
+      <h1>👥 Personeel & Rooster</h1>
+      <p>Beheer hier je medewerkers of voeg nieuwe toe.</p>
+
+      {employees.length === 0 ? (
+        <div className="text-sm text-gray-600">
+          Nog geen medewerkers toegevoegd.
+        </div>
+      ) : (
+        <ul style={{ marginTop: "1rem" }}>
+          {employees.map((emp) => (
+            <li key={emp.id} style={{ marginBottom: "0.5rem" }}>
+              <strong>{emp.naam}</strong> — {emp.functie}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <button onClick={addEmployee} style={{ marginTop: "1rem" }}>
+        Voeg medewerker toe
+      </button>
     </div>
   );
 }
+
+export default RoosterModule;
