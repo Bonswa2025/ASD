@@ -1,33 +1,43 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Home, Users2, Truck, Settings } from 'lucide-react';
 
-const linkStyle = ({ isActive }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '10px',
-  padding: '10px 12px',
-  borderRadius: '10px',
-  textDecoration: 'none',
-  color: isActive ? '#0f172a' : '#334155',
-  background: isActive ? '#e2e8f0' : 'transparent',
-  fontWeight: 500
-});
-
+const linkClass = ({ isActive }) => 'menu-link' + (isActive ? ' active' : '');
 export default function Layout(){
+  const { pathname } = useLocation();
+  const label = pathname==='/backoffice' ? 'Backoffice' : pathname==='/foodtruck' ? 'Foodtruck' : 'Dashboard';
   return (
-    <div style={{display:'grid', gridTemplateColumns:'240px 1fr', minHeight:'100vh', fontFamily:'ui-sans-serif, system-ui'}}>
-      <aside style={{borderRight:'1px solid #e2e8f0', background:'#fff', padding:'16px'}}>
-        <div style={{fontSize:18, fontWeight:700, marginBottom:12}}>Stadslab</div>
-        <nav style={{display:'grid', gap:6}}>
-          <NavLink style={linkStyle} to="/">Dashboard</NavLink>
-          <div style={{fontSize:12, color:'#64748b', margin:'10px 0 6px'}}>Modules</div>
-          <NavLink style={linkStyle} to="/backoffice">Backoffice</NavLink>
-          <NavLink style={linkStyle} to="/foodtruck">Foodtruck manuals</NavLink>
+    <div style={{display:'grid', gridTemplateColumns:'260px 1fr', minHeight:'100vh'}}>
+      <aside className="sidebar" style={{padding:'18px 16px'}}>
+        <div className="brand" style={{marginBottom:14}}>
+          <div className="brand-badge">S</div>
+          <div>Stadslab</div>
+        </div>
+        <nav className="menu" style={{display:'grid', gap:8}}>
+          <NavLink to="/" className={({isActive})=> isActive ? 'active' : ''} >
+            <span className="icon"><Home /></span> Dashboard
+          </NavLink>
+          <div style={{fontSize:12, color:'#94a3b8', margin:'12px 0 6px'}}>Modules</div>
+          <NavLink to="/backoffice" className={({isActive})=> isActive ? 'active' : ''} >
+            <span className="icon"><Users2 /></span> Backoffice
+          </NavLink>
+          <NavLink to="/foodtruck" className={({isActive})=> isActive ? 'active' : ''} >
+            <span className="icon"><Truck /></span> Foodtruck manuals
+          </NavLink>
         </nav>
+        <div style={{marginTop:'auto', opacity:.8, fontSize:12, color:'#94a3b8'}}>v0.1 • demo</div>
       </aside>
-      <main style={{padding:'20px'}}>
-        <Outlet />
-      </main>
+      <section>
+        <div className="topbar">
+          <div className="container" style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+            <div style={{fontWeight:600}}>{label}</div>
+            <div style={{fontSize:13, color:'#94a3b8'}}>GitHub → Vercel</div>
+          </div>
+        </div>
+        <main className="container" style={{padding:'20px'}}>
+          <Outlet />
+        </main>
+      </section>
     </div>
   )
 }

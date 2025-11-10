@@ -54,3 +54,9 @@ Deze variant heeft een **sidebar menu** met routes:
 - `/foodtruck` → Foodtruck manuals
 
 Je kunt eenvoudig nieuwe menu-items toevoegen door in `src/layout/MainLayout.jsx` een extra `NavLink` te plaatsen en de route in `src/main.jsx` toe te voegen.
+
+### Pretty UI
+- Donkere, subtiele gradient-achtergrond
+- Sidebar met highlight/hovers en sticky topbar
+- Consistente kaarten, knoppen en invoervelden (zonder Tailwind/shadcn setup)
+- KPI-tegels op het dashboard
