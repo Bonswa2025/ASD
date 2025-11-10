@@ -2,7 +2,8 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, NavLink, Outlet } from 'react-router-dom'
 import Foodtruck from '@/modules/foodtruck'     // <— jouw component
-import Dashboard from '@/modules/dashboard'      // of een simpele placeholder
+import Dashboard from '@/modules/dashboard'   
+import Rooster from '@/modules/rooster';// of een simpele placeholder
 
 function Layout(){
   return (
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: 'foodtruck', element: <Foodtruck /> },
       { path: '*', element: <Dashboard /> },
+    { path: 'rooster', element: <Rooster /> },
   ] }
 ])
 
