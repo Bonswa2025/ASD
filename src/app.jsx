@@ -236,3 +236,28 @@ export default function StadslabSuiteHub({
     </div>
   );
 }
+// src/App.jsx (voorbeeld met react-router-dom)
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Medewerkers from "./pages/Medewerkers";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <header className="p-4 border-b flex gap-3">
+        <Link to="/" className="font-bold">ASD</Link>
+        <Link to="/medewerkers" className="underline">Medewerkers</Link>
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/medewerkers" element={<Medewerkers />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
+  );
+}
+
+function Home() {
+  return <div className="p-4">Home</div>;
+}
+
