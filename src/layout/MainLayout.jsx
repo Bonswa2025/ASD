@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Home, Users2, Truck, Settings } from 'lucide-react';
+import { Home, Users2, Truck, CalendarDays } from 'lucide-react'; // ← CalendarDays erbij
 
 const linkClass = ({ isActive }) => 'menu-link' + (isActive ? ' active' : '');
 export default function Layout(){
@@ -26,7 +27,27 @@ export default function Layout(){
 
         </nav>
         <div style={{marginTop:'auto', opacity:.8, fontSize:12, color:'#94a3b8'}}>v0.1 • demo</div>
-      </aside>
+<nav className="menu" style={{ display: 'grid', gap: 8 }}>
+  <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+    <span className="icon"><Home /></span> Dashboard
+  </NavLink>
+
+  <div style={{ fontSize: 12, color: '#94a3b8', margin: '12px 0 6px' }}>Modules</div>
+
+  <NavLink to="/backoffice" className={({ isActive }) => (isActive ? 'active' : '')}>
+    <span className="icon"><Users2 /></span> Backoffice
+  </NavLink>
+
+  <NavLink to="/foodtruck" className={({ isActive }) => (isActive ? 'active' : '')}>
+    <span className="icon"><Truck /></span> Foodtruck manuals
+  </NavLink>
+
+  {/* ← NIEUW: Rooster */}
+  <NavLink to="/rooster" className={({ isActive }) => (isActive ? 'active' : '')}>
+    <span className="icon"><CalendarDays /></span> Rooster
+  </NavLink>
+</nav>
+        </aside>
       <section>
         <div className="topbar">
           <div className="container" style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
