@@ -3,6 +3,8 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, NavLink, Outlet } from 'react-router-dom'
 import './index.css';
+import './styles/app.css';
+
 
 // Pagina's
 import Dashboard from '@/modules/dashboard'
