@@ -1,43 +1,33 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, NavLink, Outlet } from 'react-router-dom'
 
-// super simpele, veilige pagina's
-function SafeLayout() {
+function Layout(){
   return (
-    <div style={{fontFamily:'system-ui', padding:20}}>
-      <h1>App online ✅</h1>
-      <nav style={{display:'flex', gap:10, margin:'12px 0'}}>
-        <Link to="/">Dashboard</Link>
-        <Link to="/foodtruck">Foodtruck</Link>
-      </nav>
-      <div id="page"><OutletFallback /></div>
+    <div style={{display:'grid', gridTemplateColumns:'220px 1fr', minHeight:'100vh', fontFamily:'system-ui'}}>
+      <aside style={{borderRight:'1px solid #e5e7eb', padding:16}}>
+        <div style={{fontWeight:700, marginBottom:12}}>Stadslab</div>
+        <nav style={{display:'grid', gap:8}}>
+          <NavLink to="/" end>Dashboard</NavLink>
+          <NavLink to="/foodtruck">Foodtruck</NavLink>
+        </nav>
+      </aside>
+      <main style={{padding:20}}>
+        <Outlet />
+      </main>
     </div>
   )
 }
 
-function OutletFallback() {
-  return <div>Route geladen.</div>
-}
-
-function Dashboard() {
-  return <div>Dashboard OK</div>
-}
-
-function Foodtruck() {
-  return <div>Foodtruck OK (dummy). Als je dit ziet, werkt routing correct.</div>
-}
+function Dashboard(){ return <div>Dashboard OK</div> }
+function Foodtruck(){ return <div>Foodtruck OK (dummy)</div> }
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <SafeLayout />,
-    children: [
+  { path: '/', element: <Layout />, children: [
       { index: true, element: <Dashboard /> },
       { path: 'foodtruck', element: <Foodtruck /> },
       { path: '*', element: <Dashboard /> },
-    ],
-  },
+  ] }
 ])
 
 createRoot(document.getElementById('root')).render(<RouterProvider router={router} />)
