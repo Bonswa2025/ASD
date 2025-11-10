@@ -1,3 +1,30 @@
+/* 1) Font import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* 2) Tailwind layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* 3) Base tweaks: crisp text, better focus rings */
+@layer base {
+html { @apply antialiased; }
+body { @apply bg-slate-50 text-slate-800 font-sans; }
+:focus-visible { @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white; }
+}
+
+
+/* 4) App primitives */
+@layer components {
+.container-page { @apply max-w-screen-2xl mx-auto p-4 sm:p-6 lg:p-8; }
+.card { @apply bg-white shadow-card rounded-2xl p-4 sm:p-6; }
+.btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition; }
+.btn-primary { @apply btn bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-700; }
+.btn-ghost { @apply btn text-slate-700 hover:bg-slate-100; }
+.badge { @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium; }
+.badge-success { @apply badge bg-success-500 text-white; }
+.badge-warning { @apply badge bg-warning-500 text-white; }
+.badge-danger { @apply badge bg-danger-500 text-white; }
+}
