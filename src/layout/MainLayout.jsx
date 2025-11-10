@@ -20,10 +20,10 @@ export default function Layout(){
           <div style={{fontSize:12, color:'#94a3b8', margin:'12px 0 6px'}}>Modules</div>
           <NavLink to="/backoffice" className={({isActive})=> isActive ? 'active' : ''} >
             <span className="icon"><Users2 /></span> Backoffice
-          </NavLink>
-          <NavLink to="/foodtruck" className={({isActive})=> isActive ? 'active' : ''} >
-            <span className="icon"><Truck /></span> Foodtruck manuals
-          </NavLink>
+        <NavLink to="/foodtruck" className={({isActive})=> isActive ? 'active' : ''} >
+  <span className="icon">F</span> Foodtruck manuals
+</NavLink>
+
         </nav>
         <div style={{marginTop:'auto', opacity:.8, fontSize:12, color:'#94a3b8'}}>v0.1 • demo</div>
       </aside>
