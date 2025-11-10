@@ -1,0 +1,11 @@
+import React from 'react';
+const make = (name) => (props) => <span aria-label={name} {...props} />;
+export const Printer = make('Printer');
+export const RotateCcw = make('RotateCcw');
+export const Flag = make('Flag');
+export const QrCode = make('QrCode');
+export const Plus = make('Plus');
+export const Trash2 = make('Trash2');
+export const Save = make('Save');
+export const Download = make('Download');
+export default {};
