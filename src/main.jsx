@@ -1,20 +1,18 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import StadslabSuiteHub from './app.jsx'
-import './index.css'
+// src/main.jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import StadslabSuiteHub from "./app.jsx";
 
-// Modules (wired via props)
-import Foodtruck from './modules/foodtruck'
-import Backoffice from './modules/backoffice.jsx'
-import Personeel from './modules/personeel/index.jsx'
-import RoosterModule from './modules/personeel/rooster_module.jsx'
-
-createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    {/* Modules NIET direct importeren; we tonen alleen de hub.
+       Later kun je via `links` of window.STADSLAB_APPS registreren. */}
     <StadslabSuiteHub
-      foodtruckComponent={Foodtruck}
-      backofficeComponent={Backoffice}
-      staffComponent={Personeel}
+      links={{
+        foodtruck: "",   // zet hier een URL als je stand-alone wil openen
+        backoffice: "",
+        staff: "",
+      }}
     />
   </React.StrictMode>
-)
+);
