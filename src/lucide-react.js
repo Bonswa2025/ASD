@@ -1,5 +1,5 @@
 import React from 'react';
-const make = (name) => (props) => <span aria-label={name} {...props} />;
+const make = (name) => (props) => <span aria-label={name} style={{display:'inline-flex',width:18,height:18,border:'1px solid #cbd5e1',borderRadius:4,alignItems:'center',justifyContent:'center',fontSize:10,marginRight:6}}>{name[0]}</span>;
 export const Printer = make('Printer');
 export const RotateCcw = make('RotateCcw');
 export const Flag = make('Flag');
