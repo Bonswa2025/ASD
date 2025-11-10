@@ -1,64 +1,173 @@
-import React from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { Home, Users2, Truck, Settings } from 'lucide-react';
-import { Home, Users2, Truck, CalendarDays } from 'lucide-react'; // ← CalendarDays erbij
+// src/layout/MainLayout.jsx
+import React from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Home, Users2, Truck, CalendarDays } from "lucide-react";
 
-const linkClass = ({ isActive }) => 'menu-link' + (isActive ? ' active' : '');
-export default function Layout(){
+export default function MainLayout() {
   const { pathname } = useLocation();
-  const label = pathname==='/backoffice' ? 'Backoffice' : pathname==='/foodtruck' ? 'Foodtruck' : 'Dashboard';
+
+  const pageTitle =
+    pathname === "/backoffice"
+      ? "Backoffice"
+      : pathname === "/foodtruck"
+      ? "Foodtruck"
+      : pathname === "/rooster"
+      ? "Rooster"
+      : "Dashboard";
+
   return (
-    <div style={{display:'grid', gridTemplateColumns:'260px 1fr', minHeight:'100vh'}}>
-      <aside className="sidebar" style={{padding:'18px 16px'}}>
-        <div className="brand" style={{marginBottom:14}}>
-          <div className="brand-badge">S</div>
-          <div>Stadslab</div>
-        </div>
-        <nav className="menu" style={{display:'grid', gap:8}}>
-          <NavLink to="/" className={({isActive})=> isActive ? 'active' : ''} >
-            <span className="icon"><Home /></span> Dashboard
-          </NavLink>
-          <div style={{fontSize:12, color:'#94a3b8', margin:'12px 0 6px'}}>Modules</div>
-          <NavLink to="/backoffice" className={({isActive})=> isActive ? 'active' : ''} >
-            <span className="icon"><Users2 /></span> Backoffice
-        <NavLink to="/foodtruck" className={({isActive})=> isActive ? 'active' : ''} >
-  <span className="icon">F</span> Foodtruck manuals
-</NavLink>
-
-        </nav>
-        <div style={{marginTop:'auto', opacity:.8, fontSize:12, color:'#94a3b8'}}>v0.1 • demo</div>
-<nav className="menu" style={{ display: 'grid', gap: 8 }}>
-  <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-    <span className="icon"><Home /></span> Dashboard
-  </NavLink>
-
-  <div style={{ fontSize: 12, color: '#94a3b8', margin: '12px 0 6px' }}>Modules</div>
-
-  <NavLink to="/backoffice" className={({ isActive }) => (isActive ? 'active' : '')}>
-    <span className="icon"><Users2 /></span> Backoffice
-  </NavLink>
-
-  <NavLink to="/foodtruck" className={({ isActive }) => (isActive ? 'active' : '')}>
-    <span className="icon"><Truck /></span> Foodtruck manuals
-  </NavLink>
-
-  {/* ← NIEUW: Rooster */}
-  <NavLink to="/rooster" className={({ isActive }) => (isActive ? 'active' : '')}>
-    <span className="icon"><CalendarDays /></span> Rooster
-  </NavLink>
-</nav>
-        </aside>
-      <section>
-        <div className="topbar">
-          <div className="container" style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            <div style={{fontWeight:600}}>{label}</div>
-            <div style={{fontSize:13, color:'#94a3b8'}}>GitHub → Vercel</div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "240px 1fr",
+        minHeight: "100vh",
+        background: "#f8fafc",
+        color: "#0f172a",
+      }}
+    >
+      {/* === Sidebar === */}
+      <aside
+        style={{
+          background: "#0f172a",
+          color: "white",
+          padding: "20px 16px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+        }}
+      >
+        {/* Brand / logo */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            fontWeight: 600,
+            fontSize: 18,
+          }}
+        >
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 8,
+              background: "#22c55e",
+              color: "#0f172a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+            }}
+          >
+            S
           </div>
+          Stadslab
         </div>
-        <main className="container" style={{padding:'20px'}}>
+
+        {/* Navigation */}
+        <nav
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 6,
+            marginTop: 12,
+          }}
+        >
+          <NavItem to="/" icon={<Home />} label="Dashboard" />
+          <SectionLabel>Modules</SectionLabel>
+          <NavItem to="/backoffice" icon={<Users2 />} label="Backoffice" />
+          <NavItem to="/foodtruck" icon={<Truck />} label="Foodtruck" />
+          <NavItem to="/rooster" icon={<CalendarDays />} label="Rooster" />
+        </nav>
+
+        <div
+          style={{
+            marginTop: "auto",
+            opacity: 0.6,
+            fontSize: 12,
+            textAlign: "center",
+            paddingTop: 12,
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          v0.1 • Stadslab demo
+        </div>
+      </aside>
+
+      {/* === Content === */}
+      <section>
+        {/* Topbar */}
+        <header
+          style={{
+            background: "white",
+            borderBottom: "1px solid #e2e8f0",
+            padding: "14px 24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            position: "sticky",
+            top: 0,
+            zIndex: 10,
+          }}
+        >
+          <h1 style={{ fontSize: 18, fontWeight: 600 }}>{pageTitle}</h1>
+          <div style={{ fontSize: 13, color: "#64748b" }}>GitHub → Vercel</div>
+        </header>
+
+        {/* Main outlet */}
+        <main
+          style={{
+            padding: "24px",
+            minHeight: "calc(100vh - 60px)",
+            background: "#f8fafc",
+          }}
+        >
           <Outlet />
         </main>
       </section>
     </div>
-  )
+  );
+}
+
+/* === Helpers === */
+
+function NavItem({ to, icon, label }) {
+  return (
+    <NavLink
+      to={to}
+      end
+      style={({ isActive }) => ({
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "8px 10px",
+        borderRadius: 8,
+        color: isActive ? "#22c55e" : "#cbd5e1",
+        background: isActive ? "rgba(34,197,94,0.1)" : "transparent",
+        textDecoration: "none",
+        fontSize: 14,
+        fontWeight: isActive ? 600 : 500,
+        transition: "background 0.15s, color 0.15s",
+      })}
+    >
+      <span style={{ width: 18, height: 18 }}>{icon}</span>
+      {label}
+    </NavLink>
+  );
+}
+
+function SectionLabel({ children }) {
+  return (
+    <div
+      style={{
+        fontSize: 11,
+        fontWeight: 600,
+        textTransform: "uppercase",
+        opacity: 0.6,
+        margin: "10px 0 4px 6px",
+      }}
+    >
+      {children}
+    </div>
+  );
 }
