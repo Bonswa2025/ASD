@@ -1,56 +1,43 @@
-// src/layout/MainLayout.jsx
-import React from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { Home, Users2, Truck } from 'lucide-react';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
 
-export default function Layout() {
-  const { pathname } = useLocation();
-  const label =
-    pathname === '/backoffice' ? 'Backoffice' :
-    pathname === '/foodtruck' ? 'Foodtruck' :
-    'Dashboard';
-
+// super simpele, veilige pagina's
+function SafeLayout() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', minHeight: '100vh' }}>
-      {/* SIDEBAR */}
-      <aside className="sidebar" style={{ padding: '18px 16px', display: 'flex', flexDirection: 'column' }}>
-        <div className="brand" style={{ marginBottom: 14 }}>
-          <div className="brand-badge">S</div>
-          <div>Stadslab</div>
-        </div>
-
-        <nav className="menu" style={{ display: 'grid', gap: 8 }}>
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <span className="icon"><Home /></span> Dashboard
-          </NavLink>
-
-          <div style={{ fontSize: 12, color: '#94a3b8', margin: '12px 0 6px' }}>Modules</div>
-
-          <NavLink to="/backoffice" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <span className="icon"><Users2 /></span> Backoffice
-          </NavLink>
-
-          <NavLink to="/foodtruck" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <span className="icon"><Truck /></span> Foodtruck manuals
-          </NavLink>
-        </nav>
-
-        <div style={{ marginTop: 'auto', opacity: .8, fontSize: 12, color: '#94a3b8' }}>v0.1 • demo</div>
-      </aside>
-
-      {/* CONTENT */}
-      <section>
-        <div className="topbar">
-          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ fontWeight: 600 }}>{label}</div>
-            <div style={{ fontSize: 13, color: '#94a3b8' }}>GitHub → Vercel</div>
-          </div>
-        </div>
-
-        <main className="container" style={{ padding: '20px' }}>
-          <Outlet />
-        </main>
-      </section>
+    <div style={{fontFamily:'system-ui', padding:20}}>
+      <h1>App online ✅</h1>
+      <nav style={{display:'flex', gap:10, margin:'12px 0'}}>
+        <Link to="/">Dashboard</Link>
+        <Link to="/foodtruck">Foodtruck</Link>
+      </nav>
+      <div id="page"><OutletFallback /></div>
     </div>
-  );
+  )
 }
+
+function OutletFallback() {
+  return <div>Route geladen.</div>
+}
+
+function Dashboard() {
+  return <div>Dashboard OK</div>
+}
+
+function Foodtruck() {
+  return <div>Foodtruck OK (dummy). Als je dit ziet, werkt routing correct.</div>
+}
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <SafeLayout />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: 'foodtruck', element: <Foodtruck /> },
+      { path: '*', element: <Dashboard /> },
+    ],
+  },
+])
+
+createRoot(document.getElementById('root')).render(<RouterProvider router={router} />)
