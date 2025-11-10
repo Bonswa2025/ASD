@@ -3,6 +3,7 @@ const Box = (name) => (props) => <span className="icon" aria-label={name} {...pr
 export const Home = Box('Home');
 export const Users2 = Box('Users');
 export const Truck = Box('Truck');
+export const CalendarDays = Box('CalendarDays');
 export const Settings = Box('Settings');
 export const Printer = Box('Printer');
 export const RotateCcw = Box('RotateCcw');
