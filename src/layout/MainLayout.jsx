@@ -1,4 +1,3 @@
-// src/layout/MainLayout.jsx
 import React from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { Home, Users2, Truck, CalendarDays } from "lucide-react";
