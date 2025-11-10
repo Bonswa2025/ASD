@@ -45,4 +45,12 @@ Vercel gebruikt standaard **Node 20**. Wil je pinnen, voeg toe aan `package.json
 - **Blank page** → check Build Output: staat `dist` als output? Staat `vite` in de dependencies?
 - **Module not found '@/...'** → alias staat in `vite.config.js`. Hou paden hetzelfde.
 - **lucide-react ontbreekt** → deze demo gebruikt een stub. Wil je echte iconen: `npm i lucide-react` en verwijder de alias in `vite.config.js`.
-- **shadcn/ui ontbreekt** → de UI sits als simpele stubs onder `src/components/ui/*`.
+- **shadcn/ui ontbreekt** → de UI sits als simpele stubs onder `src/components/ui/*`.---
+
+## Menu & Navigatie
+Deze variant heeft een **sidebar menu** met routes:
+- `/` → Dashboard
+- `/backoffice` → Backoffice module
+- `/foodtruck` → Foodtruck manuals
+
+Je kunt eenvoudig nieuwe menu-items toevoegen door in `src/layout/MainLayout.jsx` een extra `NavLink` te plaatsen en de route in `src/main.jsx` toe te voegen.
