@@ -1,6 +1,8 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, NavLink, Outlet } from 'react-router-dom'
+import Foodtruck from '@/modules/foodtruck'     // <— jouw component
+import Dashboard from '@/modules/dashboard'      // of een simpele placeholder
 
 function Layout(){
   return (
@@ -18,9 +20,6 @@ function Layout(){
     </div>
   )
 }
-
-function Dashboard(){ return <div>Dashboard OK</div> }
-function Foodtruck(){ return <div>Foodtruck OK (dummy)</div> }
 
 const router = createBrowserRouter([
   { path: '/', element: <Layout />, children: [
