@@ -1,80 +1,48 @@
-import AppLayout from '../layouts/AppLayout'
+import DayColumn from '../components/rooster/DayColumn.jsx';
+import { week, uren } from './rooster_data.js';
 
-export default function RoosterPage() {
+export default function RoosterPage(){
   return (
-    <AppLayout title="Rooster">
-      <div className="grid gap-6">
-
-        {/* 🔹 Balk bovenaan met knoppen */}
-        <div className="card flex flex-wrap items-center gap-3 justify-between">
-          <div className="flex flex-wrap gap-2">
-            <button className="btn-ghost">Filters</button>
-            <button className="btn-ghost">Concepten</button>
-            <button className="btn-ghost">Locaties</button>
+    <div className="space-y">
+      <div className="card" style={{padding:16}}>
+        <div className="rooster-header">
+          <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+            <button className="btn btn-ghost">Vandaag</button>
+            <div className="week-toolbar">
+              <button className="btn">◀︎</button>
+              <div className="week-pill">Week 45 • 03–09 nov 2025</div>
+              <button className="btn">▶︎</button>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <button className="btn-ghost">Vandaag</button>
-            <button className="btn-primary">Dienst toevoegen</button>
+          <div style={{display:'flex',gap:8}}>
+            <button className="btn">Exporteer uren (CSV)</button>
+            <button className="btn">Export geplande uren</button>
+            <button className="btn">Export registratie</button>
           </div>
         </div>
 
-        {/* 🔹 Hier komt het weekschema */}
-        <div className="card">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="text-sm font-medium text-slate-600">
-              Week 45 · 03-11-2025 – 09-11-2025
-            </div>
-            <div className="inline-flex rounded-xl border overflow-hidden">
-              <button className="px-3 py-1.5 text-sm hover:bg-slate-50">Dag</button>
-              <button className="px-3 py-1.5 text-sm bg-primary-600 text-white">Week</button>
-              <button className="px-3 py-1.5 text-sm hover:bg-slate-50">Maand</button>
-            </div>
-          </div>
-
-          {/* 1 voorbeeld-dag (je kan er meer maken) */}
-          <div className="grid grid-cols-1 md:grid-cols-7 gap-3">
-            <div className="rounded-xl border bg-white">
-              <div className="flex items-center justify-between px-3 py-2 border-b">
-                <div>
-                  <div className="text-xs text-slate-500">03-11-2025</div>
-                  <div className="text-sm font-semibold">Maandag</div>
-                </div>
-                <span className="badge-success">3</span>
-              </div>
-              <div className="p-3 space-y-2 text-sm">
-                <div className="rounded-lg border px-2 py-1 flex items-center justify-between">
-                  <span>09:00–17:00 · Sam</span>
-                  <span className="h-2 w-2 rounded-full bg-success-500" />
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="rooster-grid">
+          {week.map((d,i)=><DayColumn key={i} day={d}/>)}
         </div>
-
-        {/* 🔹 Tabel met uren */}
-        <div className="card">
-          <div className="mb-3 text-base font-semibold">Urenregistratie – deze week</div>
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead>
-                <tr className="text-left text-slate-600">
-                  <th className="py-2 pr-4">Medewerker</th>
-                  <th className="py-2 pr-4">Gepland</th>
-                  <th className="py-2 pr-4">Geregistreerd</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                <tr>
-                  <td className="py-2 pr-4">Sam</td>
-                  <td className="py-2 pr-4">23:15</td>
-                  <td className="py-2 pr-4">0:00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
       </div>
-    </AppLayout>
-  )
+
+      <div className="card" style={{padding:16}}>
+        <h3 style={{margin:'0 0 10px 4px'}}>Urenregistratie – deze week</h3>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Medewerker</th><th>Gepland (hh:mm)</th><th>Geregistreerd (hh:mm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {uren.map((r,i)=>(
+              <tr key={i}>
+                <td>{r.medewerker}</td><td>{r.gepland}</td><td>{r.geregistreerd}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
