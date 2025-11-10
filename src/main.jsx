@@ -2,6 +2,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, NavLink, Outlet } from 'react-router-dom'
+import './index.css';
 
 // Pagina's
 import Dashboard from '@/modules/dashboard'
